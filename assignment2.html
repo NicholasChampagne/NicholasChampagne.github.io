@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nicholas Champagne - assignment2</title>
+<title>Nicholas Champagne - assignment 2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -58,7 +60,37 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -90,11 +122,11 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
         <li>
     <a class="dropdown-item" href="./assignment1.html">
- <span class="dropdown-text">assignment1</span></a>
+ <span class="dropdown-text">Assignment1</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./assignment2.html">
- <span class="dropdown-text">assignment2</span></a>
+ <span class="dropdown-text">assignment 2</span></a>
   </li>  
     </ul>
   </li>
@@ -105,39 +137,79 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-page-left">
+      <h1 class="title">assignment 2</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="EPPS6356">EPPS6356 <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">assignment2</h1>
+
+
+
+
+
+
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="EPPS6356" data-listing-date-sort="1663650000000" data-listing-file-modified-sort="1663651526383" data-listing-reading-time-sort="5.315">
+<div class="thumbnail">
+<p><a href="./posts/Post 1/Blog Post.html"> <img src="./posts/Post 1/image.jpg" class="thumnail-image"> </a></p>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-    
-  </div>
-  
-
-</header>
-
-<p>Display Text</p>
-<div class="cell">
+<div class="body">
+<a href="./posts/Post 1/Blog Post.html">
+<h3 class="no-anchor listing-title">
+Assignment 2
+</h3>
+<div class="listing-subtitle">
 
 </div>
-
-
-
-</main> <!-- /main -->
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('EPPS6356'); return false;">
+EPPS6356
+</div>
+</div>
+<a href="./posts/Post 1/Blog Post.html">
+<div class="listing-description">
+The first function is the plot() command, which take a data set, in this case is the pressure data set that comes within r, and plots the pressure against temperature. The option pch is an option which changes how the points are represented on the graph. Here is a chart that shows what the different pch options look like, and in this graph we use option 16. <img src="rpch.jpg" class="img-fluid" alt="pch">
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Post 1/Blog Post.html">
+<div class="listing-date">
+Sep 20, 2022
+</div>
+<div class="listing-author">
+Nicholas Champagne
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
