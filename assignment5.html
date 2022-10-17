@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nicholas Champagne - Assignment4: Hackathon</title>
+<title>Nicholas Champagne - Assignment 5: More Graphs</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -102,7 +102,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="./assignment5.html">
- <span class="dropdown-text">Assignment5: More Graphs</span></a>
+ <span class="dropdown-text">Assignment 5: More Graphs</span></a>
   </li>  
     </ul>
   </li>
@@ -121,7 +121,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#coordinator-info" id="toc-coordinator-info" class="nav-link active" data-scroll-target="#coordinator-info">Coordinator Info: &nbsp;</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#average-stats" id="toc-average-stats" class="nav-link" data-scroll-target="#average-stats">Average Stats</a></li>
+  <li><a href="#total-stats" id="toc-total-stats" class="nav-link" data-scroll-target="#total-stats">Total Stats</a></li>
+  <li><a href="#stat-distribution" id="toc-stat-distribution" class="nav-link" data-scroll-target="#stat-distribution">Stat Distribution</a>
+  <ul class="collapse">
+  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
+  <li><a href="#trickster" id="toc-trickster" class="nav-link" data-scroll-target="#trickster">Trickster</a></li>
+  <li><a href="#paladin" id="toc-paladin" class="nav-link" data-scroll-target="#paladin">Paladin</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -130,7 +138,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment4: Hackathon</h1>
+<h1 class="title">Assignment 5: More Graphs</h1>
 </div>
 
 
@@ -144,82 +152,51 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>These are the charts that we made: <img src="EPPS6356A4F1.png" class="img-fluid"><br>
-This first graph shows the average Overall High School GPA for students based on their eighth grade Math Letter Score. It is separated based on the gender of the student, and the width of each columns is representative of the percent of the gendered population. Therefore, when we look at the leftmost column, which is boys who got an A in eighth grade math, they averaged 3.14 High school GPA, and they make up 34% of boys. The data for this code comes from the High School Longitudinal Study for 2009-2013, so you will need that in order to reproduce the data, and it can be found <a href="https://www.icpsr.umich.edu/web/ICPSR/studies/36423">here</a>.There is also the package scales necessary for the code, it just displays a number as a percentage, so you can remove the whole text command if you do not want to install it. The code for the following graph is:<br>
-</p>
-<pre><code>library(scales)
-Dt &lt;- load("Full.RData")
-##Load column names
-Bar&lt;- data.frame(rep(0,10))
-Bar[,1:2] &lt;- cbind(rep(c("Boy", "Girl"), each = 5),rep(c("A","B","C","D","F"),2)); Bar[,1] &lt;- paste(Bar[,1],Bar[,2]); Bar[,2] &lt;- rep(c(0,1), each = 5); Bar[,3] &lt;- rep(c("A","B","C","D","F"),2)
-x &lt;- cbind(aggregate(OGPA ~ Sex + EMSC, data = data, FUN = mean))
-Bar[,4] &lt;- x[c(1,3,5,7,9,2,4,6,8,10),3]
-x &lt;- cbind(aggregate(OGPA ~ Sex + EMSC, data = data, FUN = length))
-Bar[,5] &lt;- x[c(1,3,5,7,9,2,4,6,8,10),3]
-
-setwd(pathf)
-png(filename = "EPPS6356A4F1.png",
-   width = 700, height = 700)
-Plot &lt;- barplot( height = Bar[,4], names = Bar[,3], width = 2 * Bar[,5]/max(Bar[,5]), space = c(.4,.4,.4,.4,.4,3,.4,.4,.4,.4),
-         xlab = "Eighth Grade Math Letter Score", ylab = "Overall Highschool GPA", ylim = c(0, 4), main = "Eighth Grade Math Letter Score vs Overall Highscool GPA",
-         col = rep(c("chartreuse4", "darkolivegreen3", "gold", "darkorange", "darkred"),)
-)  
-text(x = Plot, y = Bar[,4]+.2, labels = signif(Bar[,4], digits = 3))
-text(x = Plot, y = Bar[,4]+.1, labels = percent(c(signif((Bar[1:5,5]/sum(Bar[1:5,5])),2),signif((Bar[6:10,5]/sum(Bar[6:10,5])),2)), accuracy = .1), cex = .75)
-mtext("Boys", side=1, line=2, at=4); mtext("Girls", side=1, line=2, at=14)
-
-
-dev.off()
-setwd(pathd)
-</code></pre>
-<p><img src="EPPS6356A4F2.png" class="img-fluid"><br>
-This graph shows the number of cancer incidences in an age, and tobacco usage cohort. The main visual interest in this graph is the relative height of the red bar. Since the cohorts had a different total study number, the bar graphs are scaled around the control group so that visual inspection can easily be done on the rate for each bar graph. For example, the oldest age cohort with the highest tobacco usage, found in the bottom right, has a very high rate of cancer incidence as the red bar is very close to the blue bar. This uses the esoph dataset from r, so the data should come with it. The code for this plot is:<br>
-</p>
-<pre><code>ecan &lt;- esoph
-ecan$tob &lt;- ifelse(ecan$tobgp == "0-9g/day", "0-9",
-                   ifelse(ecan$tobgp == "10-19", "10-19",
-                          ifelse(ecan$tobgp == "20-29", "20-29", "30+")))
-ecan$agp &lt;- ifelse(ecan$agegp == "25-34", "25-44",
-                   ifelse(ecan$agegp == "35-44", "24-44",
-                          ifelse(ecan$agegp == "45-54", "45-64",
-                                 ifelse(ecan$agegp == "55-64", "45-64", "65+"))))
-Cdat &lt;- aggregate(ncases ~ agp + tob, data = ecan, FUN = sum)
-Cdat[,4] &lt;- aggregate(ncontrols ~ agp + tob, data = ecan, FUN = sum)[,3]
-
-
-dev.off()
-
-setwd(pathf)
-
-png(filename = "EPPS6356A4F2.png",
-    width = 700, height = 700)
-
-par(mfrow = c(3,4), oma = c(0,5,3,0))
-for(i in 1:12){
-  Plot &lt;- barplot(height = as.numeric(Cdat[i,3:4]), names = c("cancer", "control"), space = 0.5,
-          xlab = "Group", ylab = "Incidences", ylim = c(0,max(Cdat[i,3:4])/4)*4, yaxp = c(0,ceiling(max(Cdat[i,3:4])/4)*4, 4), 
-          col = c("red","blue"), cex.axis = 1, cex.names = 1.5, cex.lab = 1.5)
-}
-
-par(mfrow=c(1,1))
-mtext("Tobacco Usage", side = 3, line = 5.5, at = 1.5, cex = 2)
-mtext("0-9g/day", side = 3, line = 4, at = 0)
-mtext("10-19g/day", side = 3, line = 4, at = 1)
-mtext("20-29g/day", side = 3, line = 4, at = 2)
-mtext("30+g/day", side = 3, line = 4, at = 3.1)
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>For this assignment, I used the same data set but tried to represent different uses of the graphs to understand the strengths of them. The data comes from my favorite game, Fire Emblem Awakening, and it is the maximum stats of each class. The goal is to get an understanding of the strengths of each class as well as understand of why certain classes are better than others. The table form of the data can be found <a href="https://serenesforest.net/awakening/classes/maximum-stats/">here</a>, in the promoted class section (There are 2 special classes that are included in the table as they are playable in the base game). For this, we are only interested in the stats that vary (STR,MAG,SKL,SPD,DEF,RES), as the other two (HP,LCK) do not change between classes. Here is a description of the stats that we are looking at:</p>
+<ul>
+<li><p>Str - Strength, increases physical damage</p></li>
+<li><p>Mag - Magic, increases magic damage</p></li>
+<li><p>Skl - Skill, affects hit rate</p></li>
+<li><p>Spd - Speed, affects dodge rate, and if 5 more than opponent you get to hit twice</p></li>
+<li><p>Def - Defense, reduces physical damage</p></li>
+<li><p>Res - Resistance, reduces magic damage</p></li>
+</ul>
+</section>
+<section id="average-stats" class="level2">
+<h2 class="anchored" data-anchor-id="average-stats">Average Stats</h2>
+<p>The first thing we want to look at is the average stats of all the classes combined. This gives us some insight into how we might expect a specific class to interact with the average case scenario. &nbsp;</p>
+<p><img src="EPPS6356A5F2.png" class="img-fluid"></p>
+</section>
+<section id="total-stats" class="level2">
+<h2 class="anchored" data-anchor-id="total-stats">Total Stats</h2>
+<p>The first thing that we can look at is the sum of each stat to see how different rank. More stats is good, therefore we might have an expectation that classes with lots of stats are generally the best. Furthermore, units will generally specialize in dealing a specific type of damage depending of the weapons that class can wield. Units that are classified as Physical can only wield swords, axes, lances, bows, or stones. Units classified as Magic can only wield Staffs or Tomes. Hybrid Classes can wield a mix of either. It is worth noting that Physical units can still deal magic damage through special weapons (and thereby have a use for their magic stat), but Magic units can not deal physical damage at all.</p>
+<p><img src="EPPS6356A5F1.png" class="img-fluid"></p>
+<p>From this table We might expect that the General class is the best class in the game, while the Taguel is the worst class in the game. But there are some more complexities that we need to think about, specifically how each stat is distributed in the class.</p>
+</section>
+<section id="stat-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="stat-distribution">Stat Distribution</h2>
+<p>Below is a radar plot of each stat for all of the classes:</p>
+<p><img src="EPPS6356A5F3.png" class="img-fluid"></p>
+<p>This is a lot to look at so lets take a look at a couple of specific classes, and overlay each one with the average stats to better understand what we are looking at. As an example, we will first look at the General class as that one was the highest up on the stat total.</p>
+<section id="general" class="level3">
+<h3 class="anchored" data-anchor-id="general">General</h3>
+<p><img src="EPPS6356A5F4.png" class="img-fluid"></p>
+<p>At first this may seem good, however it has a major weakness in its speed and resistance, meaning that it will likely die after 1 battle against people that deal magic damage while not being able to utilize its massive strength stat. Another good example would be to look at a class that scored pretty low on the ranking, like the Trickster.</p>
+</section>
+<section id="trickster" class="level3">
+<h3 class="anchored" data-anchor-id="trickster">Trickster</h3>
+<p><img src="EPPS6356A5F7.png" class="img-fluid"></p>
+<p>This class does not dwarf the average scenario like the general does, but it trades it off with some flexibility. The class has an above average speed stat, as well as being a hybrid class which allows the unit to better counter classes with specific damage weaknesses, like the General. The unit is fairly weak defensively, but that is manageable because it is not likely to be doubled in a turn like the General is. Overall, while not the best class in the game, it is a solid class with options, unlike the paladin which is just generally great.</p>
+</section>
+<section id="paladin" class="level3">
+<h3 class="anchored" data-anchor-id="paladin">Paladin</h3>
+<p><img src="EPPS6356A5F5.png" class="img-fluid"></p>
+<p>The Paladin does not have any clear weaknesses, while also being stronger and tankier. This allows any paladin to be flexible and easily specialize into any kind of role, without having any clear path to beat them easily. Overall, the Paladin is one of the best classes in the game, as it has a strong stat distribution as well as plenty of stats to work with.</p>
 
 
-mtext("Age", side = 2, line = 7.5, at = 6.5, cex = 2)
-mtext("25 - 44", side = 2, line = 6, at = 14)
-mtext("45 - 64", side = 2, line = 6, at = 6.5)
-mtext("65 +", side = 2, line = 6, at = -1)
-dev.off()
-</code></pre>
-<section id="coordinator-info" class="level2">
-<h2 class="anchored" data-anchor-id="coordinator-info">Coordinator Info: &nbsp;</h2>
-<p>The following parts of the graphs were done by the team members: Data Collection and Curation - Alden &nbsp; Graph Formatting - Nick &nbsp; R code Production - Jim and Will &nbsp;</p>
-
-
+</section>
 </section>
 
 </main> <!-- /main -->
