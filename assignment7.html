@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Nicholas Champagne - Assignment 5: More Graphs</title>
+<title>Nicholas Champagne - Assignment 7: Shiny Hackathon</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -129,15 +129,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#average-stats" id="toc-average-stats" class="nav-link" data-scroll-target="#average-stats">Average Stats</a></li>
-  <li><a href="#total-stats" id="toc-total-stats" class="nav-link" data-scroll-target="#total-stats">Total Stats</a></li>
-  <li><a href="#stat-distribution" id="toc-stat-distribution" class="nav-link" data-scroll-target="#stat-distribution">Stat Distribution</a>
+  <li><a href="#shiny-applications" id="toc-shiny-applications" class="nav-link active" data-scroll-target="#shiny-applications">Shiny Applications</a>
   <ul class="collapse">
-  <li><a href="#general" id="toc-general" class="nav-link" data-scroll-target="#general">General</a></li>
-  <li><a href="#trickster" id="toc-trickster" class="nav-link" data-scroll-target="#trickster">Trickster</a></li>
-  <li><a href="#paladin" id="toc-paladin" class="nav-link" data-scroll-target="#paladin">Paladin</a></li>
+  <li><a href="#graph-1-time-series" id="toc-graph-1-time-series" class="nav-link" data-scroll-target="#graph-1-time-series">Graph 1: Time Series</a></li>
+  <li><a href="#graph-2-pokemon-stas" id="toc-graph-2-pokemon-stas" class="nav-link" data-scroll-target="#graph-2-pokemon-stas">Graph 2: Pokemon stas</a></li>
+  <li><a href="#graph-3-animal-crossing" id="toc-graph-3-animal-crossing" class="nav-link" data-scroll-target="#graph-3-animal-crossing">Graph 3: Animal Crossing</a></li>
   </ul></li>
+  <li><a href="#synergy-report" id="toc-synergy-report" class="nav-link" data-scroll-target="#synergy-report">Synergy Report</a></li>
   </ul>
 </nav>
     </div>
@@ -146,7 +144,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 5: More Graphs</h1>
+<h1 class="title">Assignment 7: Shiny Hackathon</h1>
 </div>
 
 
@@ -160,51 +158,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>For this assignment, I used the same data set but tried to represent different uses of the graphs to understand the strengths of them. The data comes from my favorite game, Fire Emblem Awakening, and it is the maximum stats of each class. The goal is to get an understanding of the strengths of each class as well as understand of why certain classes are better than others. The table form of the data can be found <a href="https://serenesforest.net/awakening/classes/maximum-stats/">here</a>, in the promoted class section (There are 2 special classes that are included in the table as they are playable in the base game). For this, we are only interested in the stats that vary (STR,MAG,SKL,SPD,DEF,RES), as the other two (HP,LCK) do not change between classes. Here is a description of the stats that we are looking at:</p>
+<section id="shiny-applications" class="level2">
+<h2 class="anchored" data-anchor-id="shiny-applications">Shiny Applications</h2>
+<section id="graph-1-time-series" class="level3">
+<h3 class="anchored" data-anchor-id="graph-1-time-series">Graph 1: Time Series</h3>
+<iframe width="190%" height="1300" src="https://aldenfelix.shinyapps.io/assign07/" title="Assignment 6"></iframe>
+
+</section>
+<section id="graph-2-pokemon-stas" class="level3">
+<h3 class="anchored" data-anchor-id="graph-2-pokemon-stas">Graph 2: Pokemon stas</h3>
+<iframe width="1000" height="500" src="https://2f64pb-william-kilcoyne.shinyapps.io/Assignment_6/" title="Assignment 6"></iframe>
+
+</section>
+<section id="graph-3-animal-crossing" class="level3">
+<h3 class="anchored" data-anchor-id="graph-3-animal-crossing">Graph 3: Animal Crossing</h3>
+<iframe width="1500" height="1000" src="https://nicholaschampagne.shinyapps.io/ShinyACNH/" title="Assignment 6"></iframe>
+<p><a href="https://github.com/NicholasChampagne/ReplicaitonData/tree/main/ShinyACNH">Code link</a></p>
+</section>
+</section>
+<section id="synergy-report" class="level2">
+<h2 class="anchored" data-anchor-id="synergy-report">Synergy Report</h2>
+<p>Here is the group Synergy Report:</p>
 <ul>
-<li><p>Str - Strength, increases physical damage</p></li>
-<li><p>Mag - Magic, increases magic damage</p></li>
-<li><p>Skl - Skill, affects hit rate</p></li>
-<li><p>Spd - Speed, affects dodge rate, and if 5 more than opponent you get to hit twice</p></li>
-<li><p>Def - Defense, reduces physical damage</p></li>
-<li><p>Res - Resistance, reduces magic damage</p></li>
+<li><p>Alden - Time series graph</p></li>
+<li><p>Will - Pokemon Stats graph</p></li>
+<li><p>Nick - Animal Crossing graph</p></li>
+<li><p>Jim - Animal Crossing graph</p></li>
 </ul>
-</section>
-<section id="average-stats" class="level2">
-<h2 class="anchored" data-anchor-id="average-stats">Average Stats</h2>
-<p>The first thing we want to look at is the average stats of all the classes combined. This gives us some insight into how we might expect a specific class to interact with the average case scenario. &nbsp;</p>
-<p><img src="EPPS6356A5F2.png" class="img-fluid"></p>
-</section>
-<section id="total-stats" class="level2">
-<h2 class="anchored" data-anchor-id="total-stats">Total Stats</h2>
-<p>The first thing that we can look at is the sum of each stat to see how different rank. More stats is good, therefore we might have an expectation that classes with lots of stats are generally the best. Furthermore, units will generally specialize in dealing a specific type of damage depending of the weapons that class can wield. Units that are classified as Physical can only wield swords, axes, lances, bows, or stones. Units classified as Magic can only wield Staffs or Tomes. Hybrid Classes can wield a mix of either. It is worth noting that Physical units can still deal magic damage through special weapons (and thereby have a use for their magic stat), but Magic units can not deal physical damage at all.</p>
-<p><img src="EPPS6356A5F1.png" class="img-fluid"></p>
-<p>From this table We might expect that the General class is the best class in the game, while the Taguel is the worst class in the game. But there are some more complexities that we need to think about, specifically how each stat is distributed in the class.</p>
-</section>
-<section id="stat-distribution" class="level2">
-<h2 class="anchored" data-anchor-id="stat-distribution">Stat Distribution</h2>
-<p>Below is a radar plot of each stat for all of the classes:</p>
-<p><img src="EPPS6356A5F3.png" class="img-fluid"></p>
-<p>This is a lot to look at so lets take a look at a couple of specific classes, and overlay each one with the average stats to better understand what we are looking at. As an example, we will first look at the General class as that one was the highest up on the stat total.</p>
-<section id="general" class="level3">
-<h3 class="anchored" data-anchor-id="general">General</h3>
-<p><img src="EPPS6356A5F4.png" class="img-fluid"></p>
-<p>At first this may seem good, however it has a major weakness in its speed and resistance, meaning that it will likely die after 1 battle against people that deal magic damage while not being able to utilize its massive strength stat. Another good example would be to look at a class that scored pretty low on the ranking, like the Trickster.</p>
-</section>
-<section id="trickster" class="level3">
-<h3 class="anchored" data-anchor-id="trickster">Trickster</h3>
-<p><img src="EPPS6356A5F7.png" class="img-fluid"></p>
-<p>This class does not dwarf the average scenario like the general does, but it trades it off with some flexibility. The class has an above average speed stat, as well as being a hybrid class which allows the unit to better counter classes with specific damage weaknesses, like the General. The unit is fairly weak defensively, but that is manageable because it is not likely to be doubled in a turn like the General is. Overall, while not the best class in the game, it is a solid class with options, unlike the paladin which is just generally great.</p>
-</section>
-<section id="paladin" class="level3">
-<h3 class="anchored" data-anchor-id="paladin">Paladin</h3>
-<p><img src="EPPS6356A5F5.png" class="img-fluid"></p>
-<p>The Paladin does not have any clear weaknesses, while also being stronger and tankier. This allows any paladin to be flexible and easily specialize into any kind of role, without having any clear path to beat them easily. Overall, the Paladin is one of the best classes in the game, as it has a strong stat distribution as well as plenty of stats to work with.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

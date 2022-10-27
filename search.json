@@ -75,5 +75,19 @@
     "title": "Assignment 5: More Graphs",
     "section": "Stat Distribution",
     "text": "Stat Distribution\nBelow is a radar plot of each stat for all of the classes:\n\nThis is a lot to look at so lets take a look at a couple of specific classes, and overlay each one with the average stats to better understand what we are looking at. As an example, we will first look at the General class as that one was the highest up on the stat total.\n\nGeneral\n\nAt first this may seem good, however it has a major weakness in its speed and resistance, meaning that it will likely die after 1 battle against people that deal magic damage while not being able to utilize its massive strength stat. Another good example would be to look at a class that scored pretty low on the ranking, like the Trickster.\n\n\nTrickster\n\nThis class does not dwarf the average scenario like the general does, but it trades it off with some flexibility. The class has an above average speed stat, as well as being a hybrid class which allows the unit to better counter classes with specific damage weaknesses, like the General. The unit is fairly weak defensively, but that is manageable because it is not likely to be doubled in a turn like the General is. Overall, while not the best class in the game, it is a solid class with options, unlike the paladin which is just generally great.\n\n\nPaladin\n\nThe Paladin does not have any clear weaknesses, while also being stronger and tankier. This allows any paladin to be flexible and easily specialize into any kind of role, without having any clear path to beat them easily. Overall, the Paladin is one of the best classes in the game, as it has a strong stat distribution as well as plenty of stats to work with."
+  },
+  {
+    "objectID": "assignment7.html",
+    "href": "assignment7.html",
+    "title": "Assignment 7: Shiny Hackathon",
+    "section": "",
+    "text": "Code link"
+  },
+  {
+    "objectID": "assignment7.html#synergy-report",
+    "href": "assignment7.html#synergy-report",
+    "title": "Assignment 7: Shiny Hackathon",
+    "section": "Synergy Report",
+    "text": "Synergy Report\nHere is the group Synergy Report:\n\nAlden - Time series graph\nWill - Pokemon Stats graph\nNick - Animal Crossing graph\nJim - Animal Crossing graph"
   }
 ]
