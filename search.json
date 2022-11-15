@@ -89,5 +89,26 @@
     "title": "Assignment 7: Shiny Hackathon",
     "section": "Synergy Report",
     "text": "Synergy Report\nHere is the group Synergy Report:\n\nAlden - Time series graph\nWill - Pokemon Stats graph\nNick - Animal Crossing graph\nJim - Animal Crossing graph"
+  },
+  {
+    "objectID": "assignment9.html",
+    "href": "assignment9.html",
+    "title": "Assignment 9: Time Seies",
+    "section": "",
+    "text": "NOTE: NOT A TIME SERIES EXPERT! I MAY BE WRONG ABOUT DESCRIPTION OF DATA"
+  },
+  {
+    "objectID": "assignment9.html#traffic-deaths",
+    "href": "assignment9.html#traffic-deaths",
+    "title": "Assignment 9: Time Seies",
+    "section": "Traffic Deaths",
+    "text": "Traffic Deaths\nFinally, the last type of data to look at is data with the pdq format, which deals with auto regressive data, data that trends with previous values of itself, and moving average data, which deals with average values of data wrapped around itself, and d deals with the amount of differentiation needed.\n\ncars <- read.csv(file = \"Cars.csv\")\n#Just some data manipulation to pass on data to dygraph\ncars$Year <- yearmon(cars$Year)\nk <- 3\n#This creates the moving average through the rollmean function\ncars$roll <- c(rep(NA,k-1),rollmean(cars$Total, k = k))\ncars1 <- xts(cars[,2:3], order.by = cars$Year)\ncolnames(cars1) <- c(\"Crash Fatalities\",\"Moving Average\")\n\n#Simple example of a Moving Average Graph in this case\n#p = 0, d = 0, and q = k which is 3 from the rollmean funciton\ndygraph(cars1) %>%\n  dyRangeSelector() %>%\n  dyCSS(\"dygraph.css\")\n\n\n\n\n\nThis data is just a moving average data set, so p and d are equal to 0, while q is equal to 2 in this situation."
+  },
+  {
+    "objectID": "assignment9.html#gdp-analysis",
+    "href": "assignment9.html#gdp-analysis",
+    "title": "Assignment 9: Time Seies",
+    "section": "GDP Analysis",
+    "text": "GDP Analysis\n\nReal GDP\nThis first graph looks at the Real GDP over time from 1947 to July 2022. This is a classic economic example of a trending time series as Real GDP tends to increase over time exponentially. Here is what the data looks like:\n\nrgdp <- read.csv(\"GDP.csv\")\n\nrgdp$DATE <- as.yearmon(rgdp$DATE)\nrgdp.xts <- xts(rgdp$GDP, order.by = rgdp$DATE)\n\nts_plot(rgdp.xts,\n        title = \"Real GDP\",\n        Ytitle = \"Billions of Dollars\")\n\n\n\n\n\nSince we know that Real GDP is trending exponentially, we can de-trend it by taking the log of it, which looks like this:\n\n#Looks, its de-trended (mostly)\nts_plot(log(rgdp.xts),\n        title = \"Real GDP\",\n        Ytitle = \"log of Billions of Dollars\")\n\n\n\n\n\n\n\nPercent Change in Real GDP\nAnother way we can de-trend Real GDP is by looking at the percent change in Real GDP, which looks like this:\n\nrgdpc <- read.csv(\"GDPC1.csv\")\nrgdpc$DATE <- as.yearmon(rgdpc$DATE)\nrgdpc.xts <- xts(rgdpc$GDP, order.by = rgdpc$DATE)\nts_plot(rgdpc.xts,\n        title = \"Percent Change in Real GDP\",\n        Ytitle = \"Percent Change\")\n\n\n\n\n\nThis data has now become stationary data as we have de-trended it, and we can do other time series analysis on it."
   }
 ]

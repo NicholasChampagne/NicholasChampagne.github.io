@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nicholas Champagne - Assignment 9: Time Seies</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="site_libs/dygraphs-1.1.1/dygraph.css" rel="stylesheet">
+<script src="site_libs/dygraphs-1.1.1/dygraph-combined.js"></script>
+<script src="site_libs/dygraphs-1.1.1/shapes.js"></script>
+<script src="site_libs/moment-2.8.4/moment.js"></script>
+<script src="site_libs/moment-timezone-0.2.5/moment-timezone-with-data.js"></script>
+<script src="site_libs/moment-fquarter-1.0.0/moment-fquarter.min.js"></script>
+<script src="site_libs/dygraphs-binding-1.1.1.6/dygraphs.js"></script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Nicholas Champagne</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">Assignments</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="./assignment1.html">
+ <span class="dropdown-text">Assignment1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment2.html">
+ <span class="dropdown-text">assignment 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment4.html">
+ <span class="dropdown-text">Assignment4: Hackathon</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment5.html">
+ <span class="dropdown-text">Assignment 5: More Graphs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment6.html">
+ <span class="dropdown-text">Assignment 6: Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment7.html">
+ <span class="dropdown-text">Assignment 7: Shiny Hackathon</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment9.html">
+ <span class="dropdown-text">Assignment 9: Time Seies</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gdp-analysis" id="toc-gdp-analysis" class="nav-link active" data-scroll-target="#gdp-analysis">GDP Analysis</a>
+  <ul class="collapse">
+  <li><a href="#real-gdp" id="toc-real-gdp" class="nav-link" data-scroll-target="#real-gdp">Real GDP</a></li>
+  <li><a href="#percent-change-in-real-gdp" id="toc-percent-change-in-real-gdp" class="nav-link" data-scroll-target="#percent-change-in-real-gdp">Percent Change in Real GDP</a></li>
+  </ul></li>
+  <li><a href="#traffic-deaths" id="toc-traffic-deaths" class="nav-link" data-scroll-target="#traffic-deaths">Traffic Deaths</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 9: Time Seies</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+
+</div>
+<p>NOTE: NOT A TIME SERIES EXPERT! I MAY BE WRONG ABOUT DESCRIPTION OF DATA</p>
+<section id="gdp-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="gdp-analysis">GDP Analysis</h2>
+<section id="real-gdp" class="level3">
+<h3 class="anchored" data-anchor-id="real-gdp">Real GDP</h3>
+<p>This first graph looks at the Real GDP over time from 1947 to July 2022. This is a classic economic example of a trending time series as Real GDP tends to increase over time exponentially. Here is what the data looks like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>rgdp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"GDP.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>rgdp<span class="sc">$</span>DATE <span class="ot">&lt;-</span> <span class="fu">as.yearmon</span>(rgdp<span class="sc">$</span>DATE)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rgdp.xts <span class="ot">&lt;-</span> <span class="fu">xts</span>(rgdp<span class="sc">$</span>GDP, <span class="at">order.by =</span> rgdp<span class="sc">$</span>DATE)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ts_plot</span>(rgdp.xts,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Real GDP"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">Ytitle =</span> <span class="st">"Billions of Dollars"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-703128d8c14a8f279809" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-703128d8c14a8f279809">{"x":{"visdat":{"33285f026c77":["function () ","plotlyVisDat"]},"cur_data":"33285f026c77","attrs":{"33285f026c77":{"x":{},"y":{},"mode":"lines","line":{"width":2,"dash":null,"color":"#00526d"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"","showgrid":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"Billions of Dollars","showgrid":false},"title":"Real GDP","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1947,1947.25,1947.5,1947.75,1948,1948.25,1948.5,1948.75,1949,1949.25,1949.5,1949.75,1950,1950.25,1950.5,1950.75,1951,1951.25,1951.5,1951.75,1952,1952.25,1952.5,1952.75,1953,1953.25,1953.5,1953.75,1954,1954.25,1954.5,1954.75,1955,1955.25,1955.5,1955.75,1956,1956.25,1956.5,1956.75,1957,1957.25,1957.5,1957.75,1958,1958.25,1958.5,1958.75,1959,1959.25,1959.5,1959.75,1960,1960.25,1960.5,1960.75,1961,1961.25,1961.5,1961.75,1962,1962.25,1962.5,1962.75,1963,1963.25,1963.5,1963.75,1964,1964.25,1964.5,1964.75,1965,1965.25,1965.5,1965.75,1966,1966.25,1966.5,1966.75,1967,1967.25,1967.5,1967.75,1968,1968.25,1968.5,1968.75,1969,1969.25,1969.5,1969.75,1970,1970.25,1970.5,1970.75,1971,1971.25,1971.5,1971.75,1972,1972.25,1972.5,1972.75,1973,1973.25,1973.5,1973.75,1974,1974.25,1974.5,1974.75,1975,1975.25,1975.5,1975.75,1976,1976.25,1976.5,1976.75,1977,1977.25,1977.5,1977.75,1978,1978.25,1978.5,1978.75,1979,1979.25,1979.5,1979.75,1980,1980.25,1980.5,1980.75,1981,1981.25,1981.5,1981.75,1982,1982.25,1982.5,1982.75,1983,1983.25,1983.5,1983.75,1984,1984.25,1984.5,1984.75,1985,1985.25,1985.5,1985.75,1986,1986.25,1986.5,1986.75,1987,1987.25,1987.5,1987.75,1988,1988.25,1988.5,1988.75,1989,1989.25,1989.5,1989.75,1990,1990.25,1990.5,1990.75,1991,1991.25,1991.5,1991.75,1992,1992.25,1992.5,1992.75,1993,1993.25,1993.5,1993.75,1994,1994.25,1994.5,1994.75,1995,1995.25,1995.5,1995.75,1996,1996.25,1996.5,1996.75,1997,1997.25,1997.5,1997.75,1998,1998.25,1998.5,1998.75,1999,1999.25,1999.5,1999.75,2000,2000.25,2000.5,2000.75,2001,2001.25,2001.5,2001.75,2002,2002.25,2002.5,2002.75,2003,2003.25,2003.5,2003.75,2004,2004.25,2004.5,2004.75,2005,2005.25,2005.5,2005.75,2006,2006.25,2006.5,2006.75,2007,2007.25,2007.5,2007.75,2008,2008.25,2008.5,2008.75,2009,2009.25,2009.5,2009.75,2010,2010.25,2010.5,2010.75,2011,2011.25,2011.5,2011.75,2012,2012.25,2012.5,2012.75,2013,2013.25,2013.5,2013.75,2014,2014.25,2014.5,2014.75,2015,2015.25,2015.5,2015.75,2016,2016.25,2016.5,2016.75,2017,2017.25,2017.5,2017.75,2018,2018.25,2018.5,2018.75,2019,2019.25,2019.5,2019.75,2020,2020.25,2020.5,2020.75,2021,2021.25,2021.5,2021.75,2022,2022.25,2022.5],"y":[243.164,245.968,249.585,259.745,265.742,272.567,279.196,280.366,275.034,271.351,272.889,270.627,280.828,290.383,308.153,319.945,336,344.09,351.385,356.178,359.82,361.03,367.701,380.812,387.98,391.749,391.171,385.97,385.345,386.121,390.996,399.734,413.073,421.532,430.221,437.092,439.746,446.01,451.191,460.463,469.779,472.025,479.49,474.864,467.54,471.978,485.841,499.555,510.33,522.653,525.034,528.6,542.648,541.08,545.604,540.197,545.018,555.545,567.664,580.612,594.013,600.366,609.027,612.28,621.672,629.752,644.444,653.938,669.822,678.674,692.031,697.319,717.79,730.191,749.323,771.857,795.734,804.981,819.638,833.302,844.17,848.983,865.233,881.439,909.387,934.344,950.825,968.03,993.337,1009.02,1029.956,1038.147,1051.2,1067.375,1086.059,1088.608,1135.156,1156.271,1177.675,1190.297,1230.609,1266.369,1290.566,1328.904,1377.49,1413.887,1433.838,1476.289,1491.209,1530.056,1560.026,1599.679,1616.116,1651.853,1709.82,1761.831,1820.487,1852.332,1886.558,1934.273,1988.648,2055.909,2118.473,2164.27,2202.76,2331.633,2395.053,2476.949,2526.61,2591.247,2667.565,2723.883,2789.842,2797.352,2856.483,2985.557,3124.206,3162.532,3260.609,3280.818,3274.302,3331.972,3366.322,3402.561,3473.413,3578.848,3689.179,3794.706,3908.054,4009.601,4084.25,4148.551,4230.168,4294.887,4386.773,4444.094,4507.894,4545.34,4607.669,4657.627,4722.156,4806.16,4884.555,5007.994,5073.372,5190.036,5282.835,5399.509,5511.253,5612.463,5695.365,5747.237,5872.701,5960.028,6015.116,6004.733,6035.178,6126.862,6205.937,6264.54,6363.102,6470.763,6566.641,6680.803,6729.459,6808.939,6882.098,7013.738,7115.652,7246.931,7331.075,7455.288,7522.289,7580.997,7683.125,7772.586,7868.468,8032.84,8131.408,8259.771,8362.655,8518.825,8662.823,8765.907,8866.48,8969.699,9121.097,9293.991,9411.682,9526.21,9686.626,9900.169,10002.179,10247.72,10318.165,10435.744,10470.231,10599,10598.02,10660.465,10783.5,10887.46,10984.04,11061.433,11174.129,11312.766,11566.669,11772.234,11923.447,12112.815,12305.307,12527.214,12767.286,12922.656,13142.642,13324.204,13599.16,13753.424,13870.188,14039.56,14215.651,14402.082,14564.117,14715.058,14706.538,14865.701,14898.999,14608.208,14430.901,14381.236,14448.882,14651.248,14764.611,14980.193,15141.605,15309.471,15351.444,15557.535,15647.681,15842.267,16068.824,16207.13,16319.54,16420.386,16629.05,16699.551,16911.068,17133.114,17144.281,17462.703,17743.227,17852.54,17991.348,18193.707,18306.96,18332.079,18425.306,18611.617,18775.459,18968.041,19148.194,19304.506,19561.896,19894.75,20155.486,20470.197,20687.278,20819.269,21013.085,21272.448,21531.839,21706.532,21538.032,19636.731,21362.428,21704.706,22313.85,23046.934,23550.42,24349.121,24740.48,25248.476,25663.289],"mode":"lines","line":{"color":"#00526d","width":2,"dash":[]},"type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>Since we know that Real GDP is trending exponentially, we can de-trend it by taking the log of it, which looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Looks, its de-trended (mostly)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ts_plot</span>(<span class="fu">log</span>(rgdp.xts),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Real GDP"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">Ytitle =</span> <span class="st">"log of Billions of Dollars"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-f388ccfdfd51a41ddc24" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f388ccfdfd51a41ddc24">{"x":{"visdat":{"33284e1b1b70":["function () ","plotlyVisDat"]},"cur_data":"33284e1b1b70","attrs":{"33284e1b1b70":{"x":{},"y":{},"mode":"lines","line":{"width":2,"dash":null,"color":"#00526d"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"","showgrid":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"log of Billions of Dollars","showgrid":false},"title":"Real GDP","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1947,1947.25,1947.5,1947.75,1948,1948.25,1948.5,1948.75,1949,1949.25,1949.5,1949.75,1950,1950.25,1950.5,1950.75,1951,1951.25,1951.5,1951.75,1952,1952.25,1952.5,1952.75,1953,1953.25,1953.5,1953.75,1954,1954.25,1954.5,1954.75,1955,1955.25,1955.5,1955.75,1956,1956.25,1956.5,1956.75,1957,1957.25,1957.5,1957.75,1958,1958.25,1958.5,1958.75,1959,1959.25,1959.5,1959.75,1960,1960.25,1960.5,1960.75,1961,1961.25,1961.5,1961.75,1962,1962.25,1962.5,1962.75,1963,1963.25,1963.5,1963.75,1964,1964.25,1964.5,1964.75,1965,1965.25,1965.5,1965.75,1966,1966.25,1966.5,1966.75,1967,1967.25,1967.5,1967.75,1968,1968.25,1968.5,1968.75,1969,1969.25,1969.5,1969.75,1970,1970.25,1970.5,1970.75,1971,1971.25,1971.5,1971.75,1972,1972.25,1972.5,1972.75,1973,1973.25,1973.5,1973.75,1974,1974.25,1974.5,1974.75,1975,1975.25,1975.5,1975.75,1976,1976.25,1976.5,1976.75,1977,1977.25,1977.5,1977.75,1978,1978.25,1978.5,1978.75,1979,1979.25,1979.5,1979.75,1980,1980.25,1980.5,1980.75,1981,1981.25,1981.5,1981.75,1982,1982.25,1982.5,1982.75,1983,1983.25,1983.5,1983.75,1984,1984.25,1984.5,1984.75,1985,1985.25,1985.5,1985.75,1986,1986.25,1986.5,1986.75,1987,1987.25,1987.5,1987.75,1988,1988.25,1988.5,1988.75,1989,1989.25,1989.5,1989.75,1990,1990.25,1990.5,1990.75,1991,1991.25,1991.5,1991.75,1992,1992.25,1992.5,1992.75,1993,1993.25,1993.5,1993.75,1994,1994.25,1994.5,1994.75,1995,1995.25,1995.5,1995.75,1996,1996.25,1996.5,1996.75,1997,1997.25,1997.5,1997.75,1998,1998.25,1998.5,1998.75,1999,1999.25,1999.5,1999.75,2000,2000.25,2000.5,2000.75,2001,2001.25,2001.5,2001.75,2002,2002.25,2002.5,2002.75,2003,2003.25,2003.5,2003.75,2004,2004.25,2004.5,2004.75,2005,2005.25,2005.5,2005.75,2006,2006.25,2006.5,2006.75,2007,2007.25,2007.5,2007.75,2008,2008.25,2008.5,2008.75,2009,2009.25,2009.5,2009.75,2010,2010.25,2010.5,2010.75,2011,2011.25,2011.5,2011.75,2012,2012.25,2012.5,2012.75,2013,2013.25,2013.5,2013.75,2014,2014.25,2014.5,2014.75,2015,2015.25,2015.5,2015.75,2016,2016.25,2016.5,2016.75,2017,2017.25,2017.5,2017.75,2018,2018.25,2018.5,2018.75,2019,2019.25,2019.5,2019.75,2020,2020.25,2020.5,2020.75,2021,2021.25,2021.5,2021.75,2022,2022.25,2022.5],"y":[5.49373611281925,5.50520144617024,5.51979953853558,5.55970038051592,5.58252591328822,5.60788445544147,5.63191404413803,5.63609589245891,5.61689472638786,5.60341318577994,5.60906511909685,5.60074148902968,5.63774238228015,5.67120074129221,5.73059641287928,5.76814910602157,5.8171111599632,5.84090325106176,5.86188248844464,5.87543060589368,5.88560390640847,5.88896105737313,5.9072701079119,5.94230581502574,5.96095379190296,5.9706213285845,5.96914480453349,5.95575964623721,5.95413903692249,5.9561507918455,5.96869732975401,5.99079932589741,6.02362433278957,6.04389569389589,6.06429903014712,6.08014369925382,6.08619728749898,6.10034137329337,6.1118907531764,6.13223250501891,6.15226237135346,6.1570319502846,6.17272303904867,6.16302844724898,6.14748490656589,6.15693237432978,6.185881409878,6.21371770213705,6.2350575752896,6.2589177639412,6.26346302239942,6.27023200217019,6.29646085926835,6.29356714222099,6.30189343788068,6.29193388784439,6.30081882164078,6.31994961389952,6.34152969439106,6.36408271965114,6.38690120464505,6.39753946924177,6.4118626017025,6.41718969422351,6.43241262246148,6.44532609109111,6.46838792954288,6.48301254574004,6.50701200544626,6.52014089444491,6.53963075230214,6.54724298181215,6.57617704715923,6.59330614375527,6.6191701322148,6.64879929970637,6.67926495914259,6.69081867465555,6.70886277937,6.72539612148128,6.73835389611426,6.74403916255375,6.76299883482172,6.78155579921659,6.81277074614908,6.83984467877115,6.85733002878782,6.87526307853188,6.9010699820997,6.91673484176271,6.93727136186462,6.94519267219599,6.95768764773035,6.97295764222777,6.99031082682665,6.99265509486158,7.03452536540473,7.05295545082387,7.07129743480526,7.08195813479764,7.11526444778525,7.14390902942954,7.16283616081875,7.19210982134121,7.22801828147259,7.25409792812876,7.2681100440666,7.2972867854522,7.30734247932084,7.33305961502386,7.35245776677136,7.37755826309998,7.38778101868304,7.40965296707085,7.44414338079826,7.47410888816172,7.50685932669463,7.5242006647987,7.54250928369719,7.56748682427266,7.5952102898389,7.62847336489513,7.65845082511875,7.67983840112977,7.69746639851636,7.75432415944231,7.78116063903649,7.81478283985471,7.83463376227618,7.85989450600692,7.88892135026422,7.90981371480511,7.93374024238745,7.93642853440768,7.95734642680776,8.00154160808414,8.04693544988671,8.05912825156166,8.08966926672992,8.09584806052951,8.09385999558298,8.11131959989008,8.12157603268281,8.13228366235904,8.15289296303648,8.18279623990047,8.21315921905435,8.24136221647302,8.27079483087683,8.29644701410315,8.31489339190662,8.33051439562887,8.34999698756371,8.36518052440985,8.38634915603899,8.39933130265103,8.41358536112989,8.42185781129439,8.43547736819849,8.44626136995154,8.46002075394855,8.47765370746094,8.49383346513811,8.51879071469615,8.53176096426911,8.55449591255206,8.57221816442218,8.59406330249243,8.61454728101312,8.63274493960116,8.64740796513569,8.6564744965647,8.67806994327811,8.69283045803494,8.70203091334336,8.70030327057803,8.70536062771142,8.72043798921429,8.73326169349048,8.74266044085159,8.75827127327876,8.77504930944451,8.78975771742089,8.80699346888694,8.81425003307775,8.82599158671175,8.83667882630253,8.85562607613875,8.87005214371131,8.88833334788278,8.89987744169915,8.9166788582434,8.92562575892504,8.93340000033007,8.94678164442161,8.95835820652271,8.97061865918382,8.99129341813654,9.0034893732788,9.01915214215976,9.03153123939177,9.05003369951467,9.0667959299603,9.07862527175068,9.09003315324849,9.10160739819104,9.11834536092243,9.13712334127777,9.14970696262114,9.16180222604749,9.17850145023675,9.20030710668405,9.21055824823943,9.23481052079893,9.24166121314795,9.2529921154843,9.25629136665845,9.26851493602726,9.26842247019944,9.2742973177816,9.28577246709204,9.29536694721601,9.30419858910177,9.31121983268699,9.3213564746097,9.33368710154389,9.35588287899593,9.37349898683165,9.38626207666783,9.40201926205282,9.41778591172157,9.43565867679878,9.45464139707332,9.46673732896483,9.48361733727666,9.49733750991386,9.51776330511074,9.52904309027666,9.53749706765105,9.54963433805739,9.5620988197301,9.57512805844626,9.58631604277033,9.59662660221604,9.59604743579433,9.60681189207342,9.60904930846874,9.58933884150665,9.5771270891811,9.57367958029342,9.57837232030513,9.59228079853026,9.59998844774224,9.61448414083334,9.62520153194075,9.63622693547476,9.63896482025212,9.65230036615963,9.65807800607498,9.67043677381478,9.68463627621558,9.69320654785135,9.70011844184635,9.70627889064729,9.71890644487875,9.72313711181586,9.73572359779299,9.74876836113679,9.74941992759305,9.76782262840817,9.78375914461957,9.78990107400331,9.79764625465438,9.80883104404215,9.81503659439205,9.81640775502405,9.82148032478937,9.83154123463116,9.84030592373696,9.85051078927812,9.85996368206751,9.86809381914534,9.88133887140649,9.89821115681073,9.91123178838384,9.92672530244879,9.93727420094402,9.94363423108187,9.95290061790042,9.96516799325016,9.97728800240972,9.98536850805786,9.97757558163384,9.88515712202627,9.96938895702612,9.98528438237589,10.0129628408934,10.0452880243931,10.0668989336804,10.1002510292965,10.1161960475368,10.1365210764463,10.1528168061054],"mode":"lines","line":{"color":"#00526d","width":2,"dash":[]},"type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+</section>
+<section id="percent-change-in-real-gdp" class="level3">
+<h3 class="anchored" data-anchor-id="percent-change-in-real-gdp">Percent Change in Real GDP</h3>
+<p>Another way we can de-trend Real GDP is by looking at the percent change in Real GDP, which looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rgdpc <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"GDPC1.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rgdpc<span class="sc">$</span>DATE <span class="ot">&lt;-</span> <span class="fu">as.yearmon</span>(rgdpc<span class="sc">$</span>DATE)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rgdpc.xts <span class="ot">&lt;-</span> <span class="fu">xts</span>(rgdpc<span class="sc">$</span>GDP, <span class="at">order.by =</span> rgdpc<span class="sc">$</span>DATE)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ts_plot</span>(rgdpc.xts,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Percent Change in Real GDP"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">Ytitle =</span> <span class="st">"Percent Change"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-c2787ba458813ac59451" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c2787ba458813ac59451">{"x":{"visdat":{"332825c44db9":["function () ","plotlyVisDat"]},"cur_data":"332825c44db9","attrs":{"332825c44db9":{"x":{},"y":{},"mode":"lines","line":{"width":2,"dash":null,"color":"#00526d"},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"","showgrid":false},"yaxis":{"domain":[0,1],"automargin":true,"title":"Percent Change","showgrid":false},"title":"Percent Change in Real GDP","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[1947.25,1947.5,1947.75,1948,1948.25,1948.5,1948.75,1949,1949.25,1949.5,1949.75,1950,1950.25,1950.5,1950.75,1951,1951.25,1951.5,1951.75,1952,1952.25,1952.5,1952.75,1953,1953.25,1953.5,1953.75,1954,1954.25,1954.5,1954.75,1955,1955.25,1955.5,1955.75,1956,1956.25,1956.5,1956.75,1957,1957.25,1957.5,1957.75,1958,1958.25,1958.5,1958.75,1959,1959.25,1959.5,1959.75,1960,1960.25,1960.5,1960.75,1961,1961.25,1961.5,1961.75,1962,1962.25,1962.5,1962.75,1963,1963.25,1963.5,1963.75,1964,1964.25,1964.5,1964.75,1965,1965.25,1965.5,1965.75,1966,1966.25,1966.5,1966.75,1967,1967.25,1967.5,1967.75,1968,1968.25,1968.5,1968.75,1969,1969.25,1969.5,1969.75,1970,1970.25,1970.5,1970.75,1971,1971.25,1971.5,1971.75,1972,1972.25,1972.5,1972.75,1973,1973.25,1973.5,1973.75,1974,1974.25,1974.5,1974.75,1975,1975.25,1975.5,1975.75,1976,1976.25,1976.5,1976.75,1977,1977.25,1977.5,1977.75,1978,1978.25,1978.5,1978.75,1979,1979.25,1979.5,1979.75,1980,1980.25,1980.5,1980.75,1981,1981.25,1981.5,1981.75,1982,1982.25,1982.5,1982.75,1983,1983.25,1983.5,1983.75,1984,1984.25,1984.5,1984.75,1985,1985.25,1985.5,1985.75,1986,1986.25,1986.5,1986.75,1987,1987.25,1987.5,1987.75,1988,1988.25,1988.5,1988.75,1989,1989.25,1989.5,1989.75,1990,1990.25,1990.5,1990.75,1991,1991.25,1991.5,1991.75,1992,1992.25,1992.5,1992.75,1993,1993.25,1993.5,1993.75,1994,1994.25,1994.5,1994.75,1995,1995.25,1995.5,1995.75,1996,1996.25,1996.5,1996.75,1997,1997.25,1997.5,1997.75,1998,1998.25,1998.5,1998.75,1999,1999.25,1999.5,1999.75,2000,2000.25,2000.5,2000.75,2001,2001.25,2001.5,2001.75,2002,2002.25,2002.5,2002.75,2003,2003.25,2003.5,2003.75,2004,2004.25,2004.5,2004.75,2005,2005.25,2005.5,2005.75,2006,2006.25,2006.5,2006.75,2007,2007.25,2007.5,2007.75,2008,2008.25,2008.5,2008.75,2009,2009.25,2009.5,2009.75,2010,2010.25,2010.5,2010.75,2011,2011.25,2011.5,2011.75,2012,2012.25,2012.5,2012.75,2013,2013.25,2013.5,2013.75,2014,2014.25,2014.5,2014.75,2015,2015.25,2015.5,2015.75,2016,2016.25,2016.5,2016.75,2017,2017.25,2017.5,2017.75,2018,2018.25,2018.5,2018.75,2019,2019.25,2019.5,2019.75,2020,2020.25,2020.5,2020.75,2021,2021.25,2021.5,2021.75,2022,2022.25,2022.5],"y":[-0.26671,-0.2065,1.56428,1.5042,1.65068,0.57293,0.11171,-1.37795,-0.3411,1.03242,-0.83927,3.9301,3.04981,3.86441,1.91478,1.35816,1.73271,2.061,0.22025,1.06853,0.2154,0.72185,3.28422,1.85887,0.77294,-0.56268,-1.51394,-0.47802,0.10899,1.12935,1.95669,2.85623,1.6272,1.35046,0.60033,-0.38838,0.82632,-0.08984,1.64586,0.64029,-0.21909,0.98002,-1.03428,-2.59544,0.65723,2.31322,2.33811,1.91955,2.25517,0.07056,0.28489,2.24771,-0.53907,0.48942,-1.2834,0.6749,1.69743,1.91959,1.9611,1.78365,0.90366,1.22851,0.3289,1.09157,1.12212,2.19843,0.6556,2.10825,1.08873,1.5623,0.30887,2.41975,1.2633,2.22325,2.30404,2.43423,0.3416,0.84691,0.82041,0.88555,0.0613,0.94612,0.75402,2.03951,1.6708,0.77496,0.39332,1.56512,0.304,0.66051,-0.48769,-0.14847,0.14193,0.92155,-1.07164,2.71599,0.54112,0.82297,0.23578,1.83896,2.26977,0.94438,1.67446,2.47481,1.08866,-0.5259,0.94922,-0.85977,0.23768,-0.94514,-0.38814,-1.21729,0.71454,1.71165,1.34652,2.24876,0.7337,0.54871,0.72485,1.18148,1.94411,1.80436,0.00219,0.31916,3.86427,1.00552,1.34414,0.17979,0.10692,0.74287,0.25008,0.31452,-2.06047,-0.11885,1.86493,1.95943,-0.74106,1.19753,-1.08956,-1.55354,0.4562,-0.3823,0.03995,1.31785,2.27561,1.99906,2.08622,1.95477,1.72779,0.96406,0.82086,0.96907,0.88047,1.52712,0.74333,0.93352,0.45038,0.95699,0.53699,0.74502,1.07884,0.86757,1.71704,0.51665,1.3139,0.58593,1.3325,1.0166,0.76327,0.74088,0.19705,1.0928,0.36291,0.06651,-0.91039,-0.46787,0.77972,0.50534,0.34856,1.19716,1.08432,0.98811,1.04288,0.16698,0.58211,0.47716,1.36008,0.97031,1.3551,0.58454,1.14552,0.3547,0.29831,0.85066,0.67904,0.74897,1.66788,0.89701,1.0384,0.64556,1.66198,1.25078,0.85874,0.99938,0.92582,1.25276,1.61619,0.94383,0.835,1.32303,1.64278,0.36445,1.82058,0.09977,0.59436,-0.32422,0.62139,-0.40035,0.27731,0.82823,0.6155,0.40353,0.13066,0.51672,0.89338,1.6669,1.15405,0.57292,0.77874,0.94125,1.02203,1.11088,0.4866,0.78562,0.56793,1.34867,0.24558,0.15046,0.84371,0.2936,0.63843,0.60231,0.60964,-0.40743,0.5723,-0.52689,-2.1831,-1.16572,-0.16924,0.36193,1.06796,0.50005,0.9677,0.77314,0.5196,-0.24092,0.67805,-0.03877,1.12168,0.81792,0.45586,0.17488,0.10984,0.86779,0.13939,0.79165,0.71117,-0.35011,1.28413,1.16496,0.44899,0.81331,0.58,0.32337,0.14623,0.58918,0.30239,0.60112,0.49689,0.42966,0.50379,0.82749,1.00566,0.69265,0.69734,0.72204,0.18178,0.54271,0.67301,0.88997,0.44305,-1.17515,-8.48434,7.85448,0.96321,1.54279,1.70702,0.65669,1.69569,-0.41034,-0.14463,0.63558],"mode":"lines","line":{"color":"#00526d","width":2,"dash":[]},"type":"scatter","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This data has now become stationary data as we have de-trended it, and we can do other time series analysis on it.</p>
+</section>
+</section>
+<section id="traffic-deaths" class="level2">
+<h2 class="anchored" data-anchor-id="traffic-deaths">Traffic Deaths</h2>
+<p>Finally, the last type of data to look at is data with the pdq format, which deals with auto regressive data, data that trends with previous values of itself, and moving average data, which deals with average values of data wrapped around itself, and d deals with the amount of differentiation needed.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>cars <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">"Cars.csv"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Just some data manipulation to pass on data to dygraph</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>Year <span class="ot">&lt;-</span> <span class="fu">yearmon</span>(cars<span class="sc">$</span>Year)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#This creates the moving average through the rollmean function</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>roll <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>,k<span class="dv">-1</span>),<span class="fu">rollmean</span>(cars<span class="sc">$</span>Total, <span class="at">k =</span> k))</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>cars1 <span class="ot">&lt;-</span> <span class="fu">xts</span>(cars[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">order.by =</span> cars<span class="sc">$</span>Year)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(cars1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Crash Fatalities"</span>,<span class="st">"Moving Average"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Simple example of a Moving Average Graph in this case</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#p = 0, d = 0, and q = k which is 3 from the rollmean funciton</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">dygraph</span>(cars1) <span class="sc">%&gt;%</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dyRangeSelector</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dyCSS</span>(<span class="st">"dygraph.css"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-03f733354a015396536c" style="width:100%;height:464px;" class="dygraphs html-widget"></div>
+<script type="application/json" data-for="htmlwidget-03f733354a015396536c">{"x":{"attrs":{"labels":["year","Crash Fatalities","Moving Average"],"legend":"auto","retainDateWindow":false,"axes":{"x":{"pixelsPerLabel":60}},"showRangeSelector":true,"rangeSelectorHeight":40,"rangeSelectorPlotFillColor":" #A7B1C4","rangeSelectorPlotStrokeColor":"#808FAB","interactionModel":"Dygraph.Interaction.defaultModel"},"scale":"yearly","annotations":[],"shadings":[],"events":[],"format":"date","data":[["1994-01-01T00:00:00.000Z","1995-01-01T00:00:00.000Z","1996-01-01T00:00:00.000Z","1997-01-01T00:00:00.000Z","1998-01-01T00:00:00.000Z","1999-01-01T00:00:00.000Z","2000-01-01T00:00:00.000Z","2001-01-01T00:00:00.000Z","2002-01-01T00:00:00.000Z","2003-01-01T00:00:00.000Z","2004-01-01T00:00:00.000Z","2005-01-01T00:00:00.000Z","2006-01-01T00:00:00.000Z","2007-01-01T00:00:00.000Z","2008-01-01T00:00:00.000Z","2009-01-01T00:00:00.000Z","2010-01-01T00:00:00.000Z","2011-01-01T00:00:00.000Z","2012-01-01T00:00:00.000Z","2013-01-01T00:00:00.000Z","2014-01-01T00:00:00.000Z","2015-01-01T00:00:00.000Z","2016-01-01T00:00:00.000Z","2017-01-01T00:00:00.000Z","2018-01-01T00:00:00.000Z","2019-01-01T00:00:00.000Z","2020-01-01T00:00:00.000Z"],[36254,37241,37494,37324,37107,37140,37526,37862,38491,38477,38444,39252,38648,37435,34172,30862,30296,29867,31006,30202,30056,32538,34748,34560,33919,33487,35766],[null,null,36996.3333333333,37353,37308.3333333333,37190.3333333333,37257.6666666667,37509.3333333333,37959.6666666667,38276.6666666667,38470.6666666667,38724.3333333333,38781.3333333333,38445,36751.6666666667,34156.3333333333,31776.6666666667,30341.6666666667,30389.6666666667,30358.3333333333,30421.3333333333,30932,32447.3333333333,33948.6666666667,34409,33988.6666666667,34390.6666666667]],"css":".dygraph-title {\n  color: black;\n  font-weight: bold;\n  font-family: \"Palatino\", serif;\n}\n.dygraph-axis-label {\n  font-size: 12px;\n  font-family: \"Palatino\", serif;\n}\n.dygraph-legend {\n  font-size: 9px;  \n  font-family: \"Palatino\", serif;\n}"},"evals":["attrs.interactionModel"],"jsHooks":[]}</script>
+</div>
+</div>
+<p>This data is just a moving average data set, so p and d are equal to 0, while q is equal to 2 in this situation.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
