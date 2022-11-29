@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Nicholas Champagne - Assignment 10: Breakpoint Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Nicholas Champagne</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html">Home</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html">About</a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">Assignments</a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="./assignment1.html">
+ <span class="dropdown-text">Assignment1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment2.html">
+ <span class="dropdown-text">assignment 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment4.html">
+ <span class="dropdown-text">Assignment4: Hackathon</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment5.html">
+ <span class="dropdown-text">Assignment 5: More Graphs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment6.html">
+ <span class="dropdown-text">Assignment 6: Shiny</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment7.html">
+ <span class="dropdown-text">Assignment 7: Shiny Hackathon</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment9.html">
+ <span class="dropdown-text">Assignment 9: Time Seies</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./assignment10.html">
+ <span class="dropdown-text">Assignment 10: Breakpoint Models</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#fred-industrial-production-index" id="toc-fred-industrial-production-index" class="nav-link active" data-scroll-target="#fred-industrial-production-index">Fred Industrial Production Index</a>
+  <ul class="collapse">
+  <li><a href="#production-index" id="toc-production-index" class="nav-link" data-scroll-target="#production-index">Production Index</a></li>
+  <li><a href="#bic-of-breakpoint-models" id="toc-bic-of-breakpoint-models" class="nav-link" data-scroll-target="#bic-of-breakpoint-models">BIC of Breakpoint models</a></li>
+  </ul></li>
+  <li><a href="#seatbelts" id="toc-seatbelts" class="nav-link" data-scroll-target="#seatbelts">Seatbelts</a></li>
+  <li><a href="#rw-intervention" id="toc-rw-intervention" class="nav-link" data-scroll-target="#rw-intervention">RW Intervention</a>
+  <ul class="collapse">
+  <li><a href="#changepoint-estimation" id="toc-changepoint-estimation" class="nav-link" data-scroll-target="#changepoint-estimation">Changepoint estimation</a></li>
+  <li><a href="#cost-function" id="toc-cost-function" class="nav-link" data-scroll-target="#cost-function">Cost Function</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Assignment 10: Breakpoint Models</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="fred-industrial-production-index" class="level2">
+<h2 class="anchored" data-anchor-id="fred-industrial-production-index">Fred Industrial Production Index</h2>
+<section id="production-index" class="level3">
+<h3 class="anchored" data-anchor-id="production-index">Production Index</h3>
+<p><img src="A10/EPPS6356P10F0.png" class="img-fluid"> The first graph shown is just the trending industrial production index collected by FRED. This graph is a great visualization as it has all the necessary components without looking messy.</p>
+</section>
+<section id="bic-of-breakpoint-models" class="level3">
+<h3 class="anchored" data-anchor-id="bic-of-breakpoint-models">BIC of Breakpoint models</h3>
+<p>The next couple graphs deal with breakpoint models, where now we want to choose the model that has the least amount of breakpoints in it, as the lower our Bayesian Information Criteria (BIC) is, generally speaking, the better the model is.</p>
+<p><img src="A10/EPPS6356P10F1.png" class="img-fluid"></p>
+<p>This first graph uses data of the production index from 1947 to current time, and it suggests that there are no breakpoints in the graph. This graph is an excellent diagnostic and visualization tool, but the only thing that I would change would be to slightly alter the title of the graph so that it is easier to tell which model this is. But, it seems there are command limitations from this, so external methods are likely needed.</p>
+<p><img src="A10/EPPS6356P10F2.png" class="img-fluid"></p>
+<p>This next graph uses data from 1947 to 2016, at it suggests that there should be 4 breakpoints in the model. This graph is similar to the previous one visually speaking, only external methods to identify this graph as opposed to the other one would be nice, but there are some command limitations.</p>
+<p><img src="A10/EPPS6356P10F6.png" class="img-fluid"> This graph shows there those predicted breakpoints are. The black line is the raw data, the green line is the predicted different in index, and the vertical dotted lines are the breakpoints, with a confidence region in blue at the very bottom. For this graph, a legend is necessary as there are quite a few different things going on within the graph, so some help understand which is what would be very helpful.</p>
+</section>
+</section>
+<section id="seatbelts" class="level2">
+<h2 class="anchored" data-anchor-id="seatbelts">Seatbelts</h2>
+<p><img src="A10/EPPS6356P10F7.png" class="img-fluid"></p>
+<p>This graph shows several things. First, the log10 of the data before car manufactures were required to install seatbelts into cars of car deaths. The second and third graphs show the importance of different lag variables to create a time series model. The only change I would make to this model is just changing the y axis label of the first graph to log10(Deaths) and putting a title in just to clarify the graph.</p>
+<p><img src="A10/EPPS6356P10F4.png" class="img-fluid"></p>
+<p>This graph shows the prediction of the next 2 years of data in red with the confidence region shown in blue against the actual next 2 years of data, shown in black. The only change I would add to this graph is maybe a legend in the bottom left, but The graph is likely straightforward enough as is.</p>
+</section>
+<section id="rw-intervention" class="level2">
+<h2 class="anchored" data-anchor-id="rw-intervention">RW Intervention</h2>
+<p>For this example, fit.inf.L0 bombed R, and I really couldn’t figure out why it was doing that, as a result I was unable to properly replicate some plots.</p>
+<section id="changepoint-estimation" class="level3">
+<h3 class="anchored" data-anchor-id="changepoint-estimation">Changepoint estimation</h3>
+<p>This first 2 graphs show how change point estimation works using lambda criteria and different estimation methods.</p>
+<p><img src="A10/EPPS6356P10F8.png" class="img-fluid"></p>
+<p>This first method shows the estimated change points using Binary Segmentation, and a total breakpoints of 10. The red lines shows the estimated breakpoints in the model, while the black the data. I think that this model is difficult to understand, but i believe that the interpretation of this is were breakpoints likely are, which in this case may be 4-5 locations, which is were the red lines are grouped together. As a result, if I were showing the graph, varying the color of different grouped lines may help people understand that some of the estimations are near each other for a reason.</p>
+<p><img src="A10/EPPS6356P10F9.png" class="img-fluid"></p>
+<p>This second graph shows the estimated change points using L0 segmentation and a lambda of 4. This graph is a hot mess, likely because lambda may need to be bigger, but I don’t fully understand this method anyways.</p>
+</section>
+<section id="cost-function" class="level3">
+<h3 class="anchored" data-anchor-id="cost-function">Cost Function</h3>
+<p><img src="A10/EPPS6356P10F5.png" class="img-fluid"></p>
+<p>I think this data shows at which change points the cost of choosing mu is minimized, and we want to minimize that. In this case, the cost of mu is minimized at around 3, with the changepoint at 200, which is what is expected as the data was set up in that way. I do not really understand this graph, so I cannot tell you what is shown or why, and how it can be improved.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
